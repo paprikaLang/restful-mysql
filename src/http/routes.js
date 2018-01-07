@@ -2,7 +2,7 @@
 
 const routes = (server) => {
 	server.get('/',(req,res,next) => {
-		res.send('Enjoy yourself,baby!')
+		res.send('Enjoy yourself!')
 		next()
 	})
 }
