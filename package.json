@@ -1,13 +1,14 @@
 {
   "name": "restful-ws",
   "version": "1.0.0",
-  "description": "",
+  "description": "restful-ws",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "paprika",
   "license": "ISC",
   "devDependencies": {
     "eslint": "^4.15.0",
