@@ -6,15 +6,16 @@ const routes = (server) => {
 		res.send('Enjoy yourself!')
 		next()
 	})
-	server.get('category',(req,res,next) => {
-		console.log(db)
-	    db.categories().all().then(categories => {
-	        res.send(categories)
-			next()
-	    }).catch(error => {
-			res.send(error)
-			next()
-		})
+	server.get('category',async (req,res,next) => {
+
+        try{
+            res.send(await db.categories().all())
+            next()
+        }catch(error){
+            res.send(error)
+            next()
+        }    
+	      
 	})
 	
 	server.post('category',(req,res,next) => {

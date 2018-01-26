@@ -11,7 +11,7 @@ const categories = deps => {
 				if (error) {
 					reject(error)
 				}
-				resolve({ pagination: {page: 2, results: results.length}, categories:results })
+				resolve({ pagination: {page: 1, results: results.length}, categories:results })
 
 			})
 		})
