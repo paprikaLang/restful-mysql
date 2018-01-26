@@ -1,5 +1,5 @@
 
-const categories = require('../services/mysql')
+const db = require('../services/mysql')
 
 const routes = (server) => {
 	server.get('/',(req,res,next) => {
@@ -7,7 +7,8 @@ const routes = (server) => {
 		next()
 	})
 	server.get('category',(req,res,next) => {
-		categories.then(categories => {
+		console.log(db)
+	    db.categories().all().then(categories => {
 	        res.send(categories)
 			next()
 	    }).catch(error => {

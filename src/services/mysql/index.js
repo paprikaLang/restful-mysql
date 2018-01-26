@@ -9,6 +9,8 @@ const connection = mysqlServer.createConnection({
 	database: 'restful_ws'
 })
 
-const categories = require('./categories')({ connection })
+const categoryModule = require('./categories')({ connection })
 
-module.exports = categories
+module.exports = {
+	categories: () => categoryModule
+}

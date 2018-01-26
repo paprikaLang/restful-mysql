@@ -2,7 +2,9 @@
 
 
 const categories = deps => {
-  return new Promise((resolve,reject) => {
+  return {
+  	all: () => {
+  	   return new Promise((resolve,reject) => {
 			const { connection } = deps
 			connection.query('SELECT * FROM categories',(error,results) => {
 
@@ -11,8 +13,14 @@ const categories = deps => {
 				}
 				resolve({ pagination: {page: 2, results: results.length}, categories:results })
 
-			   })
-		  })
+			})
+		})
+  	},
+  	save: (name) => {},
+  	update: (id, name) => {},
+  	del: (id) => {}
+
+  }
 
 }
 
