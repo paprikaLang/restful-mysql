@@ -2,10 +2,22 @@
 const db = require('../services/mysql')
 
 const routes = (server) => {
-	server.get('/',(req,res,next) => {
-		res.send('Enjoy yourself!')
-		next()
-	})
+    
+    server.post('authenticate',async (req,res,next) => {
+
+        try{
+            const { email, password } = req.params
+            console.log(email,password)
+            res.send(await db.auth().authenticate(email,password))
+            
+        }catch(error){
+            res.send(error)
+            
+        }   
+        next() 
+          
+    })
+
 	server.get('categories',async (req,res,next) => {
 
         try{
@@ -56,6 +68,10 @@ const routes = (server) => {
         next()
 
 	})
+    server.get('/',(req,res,next) => {
+        res.send('Enjoy yourself!')
+        next()
+    })
 
 }
 
