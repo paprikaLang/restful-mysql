@@ -16,7 +16,7 @@ const auth = deps => {
 				}
 				const { email, id } = results[0]
 				//jwt.sign(payload, secretOrPrivateKey, [options, callback])  https://jwt.io
-				const token = jwt.sign({ email, id }, 'TiYo', { expiresIn: 60 * 60 * 24 })
+				const token = jwt.sign({ email, id }, process.env.JWT_SECRET, { expiresIn: 60 * 60 * 24 })
 				console.log(token)
 				resolve({ token })
 
