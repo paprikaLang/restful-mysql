@@ -10,11 +10,12 @@ const routes = (server) => {
 
         try{
             res.send(await db.categories().all())
-            next()
+            
         }catch(error){
             res.send(error)
-            next()
-        }    
+            
+        }   
+        next() 
 	      
 	})
 	
@@ -22,22 +23,24 @@ const routes = (server) => {
         const { name } = req.params
         try {
         	res.send(await db.categories().save(name))
-        	next()
+        	
         }catch(error) {
             res.send(error)
-            next()   
+             
         }
+        next()
 
 	})
 	server.put('category', async (req,res,next) => {
         const { id, name } = req.params
         try {
         	res.send(await db.categories().update(id,name))
-        	next()
+        	
         }catch(error) {
             res.send(error)
-            next()   
+            
         }
+        next()
 
 	})
 	server.del('category', async (req,res,next) => {
@@ -45,15 +48,15 @@ const routes = (server) => {
         console.log(req.params)
         try {
         	res.send(await db.categories().delete(id))
-        	next()
+        	
         }catch(error) {
             res.send(error)
-            next()   
+           
         }
+        next()
 
 	})
 
 }
-
 
 module.exports = routes

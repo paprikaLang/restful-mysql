@@ -38,12 +38,12 @@ const categories = deps => {
 			const { connection, errorHandler } = deps
 			connection.query('UPDATE categories SET name = ? WHERE id = ? ', [name, id], (error,results) => {
 
-				if (error) {
+				if (error || !results.affectedRows) {
 					// reject(error)
 					errorHandler(error, `failed update  ${name}`, reject)
 					return false
 				}
-				resolve({ category: { name , id: results.insertId} })
+				resolve({ category: { name , id}, affectedRows: results.affectedRows })
 
 			})
 		})
@@ -54,12 +54,12 @@ const categories = deps => {
 			const { connection, errorHandler } = deps
 			connection.query('DELETE FROM categories WHERE id = ? ', [id], (error,results) => {
 
-				if (error) {
+				if (error || !results.affectedRows) {
 					// reject(error)
 					errorHandler(error, `failed remove id  ${id}`, reject)
 					return false
 				}
-				resolve({ message: `remove id ${id} success`})
+				resolve({ message: `remove id ${id} success`, affectedRows: results.affectedRows})
 
 			})
 		})
