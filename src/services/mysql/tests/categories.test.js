@@ -9,6 +9,15 @@ const create = () => categories.save('category-test')
 test.beforeEach(t => connection.query('TRUNCATE TABLE categories'))
 test.after.always(t => connection.query('TRUNCATE TABLE categories'))
 
+test('list', async t => {
+	await create()
+	await create()
+	await create()
+	const list = await categories.all()
+	t.is(list.categories.length, 2)
+	t.is(list.categories[0].name, 'category-test')
+})
+
 test('save', async t => {
     const result = await create()
     t.is(result.category.name,'category-test')
